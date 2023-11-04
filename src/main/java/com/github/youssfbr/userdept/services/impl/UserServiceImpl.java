@@ -29,4 +29,10 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User NOT FOUND with Id: " + id));
     }
+
+    @Override
+    @Transactional
+    public User userCreate(User user) {
+        return userRepository.save(user);
+    }
 }
