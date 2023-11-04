@@ -22,4 +22,11 @@ public class UserServiceImpl implements IUserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User NOT FOUND with Id: " + id));
+    }
 }
